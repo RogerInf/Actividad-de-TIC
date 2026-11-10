@@ -41,7 +41,8 @@ body {
 
 /* Tarjeta del formulario */
 .login-card {
-    width: 420px;
+    width: 100%;
+    max-width: 350px;
     padding: 42px;
     background: white;
     border-radius: 22px;
@@ -210,6 +211,11 @@ input:focus {
 .submit-button:focus-visible,
 #toggle-password:focus-visible {
     outline: 3px solid #18b6ad60;
+    outline-offset: 3px;
+}
+
+input:focus-visible {
+    outline: 3px solid var(--turquoise);
     outline-offset: 3px;
 }
 
