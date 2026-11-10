@@ -39,7 +39,13 @@ function clearErrors() {
     formMessage.className = "form-message";
 }
 
-// Validar que los campos no estén vacíos.
+// Validar formato del correo electrónico.
+function isValidEmail(email) {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+}
+
+// Validar los campos del formulario.
 function validateForm() {
 
     clearErrors();
@@ -49,17 +55,33 @@ function validateForm() {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
 
+    // Validación del correo electrónico.
     if (email === "") {
 
         emailError.textContent = "Ingresa tu correo electrónico.";
         emailInput.classList.add("input-invalid");
         valid = false;
+
+    } else if (!isValidEmail(email)) {
+
+        emailError.textContent = "Ingresa un correo electrónico válido.";
+        emailInput.classList.add("input-invalid");
+        emailInput.focus();
+        valid = false;
     }
 
+    // Validación de la contraseña.
     if (password.trim() === "") {
 
         passwordError.textContent = "Ingresa tu contraseña.";
         passwordInput.classList.add("input-invalid");
+        valid = false;
+
+    } else if (password.length < 8) {
+
+        passwordError.textContent = "La contraseña debe tener al menos 8 caracteres.";
+        passwordInput.classList.add("input-invalid");
+        passwordInput.focus();
         valid = false;
     }
 
